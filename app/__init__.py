@@ -18,6 +18,10 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    @app.route("/")
+    def home():
+        return "Welcome to Document Manager"
+
     from app.auth.routes import auth_bp
     from app.files.routes import file_bp
 
