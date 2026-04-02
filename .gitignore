@@ -1,0 +1,8 @@
+venvFlask/
+.venvFlask
+__pycache__/
+*.pyc
+.env
+instance/
+uploads/
+migrations/
