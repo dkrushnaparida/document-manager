@@ -15,11 +15,11 @@ def register():
         password = request.form.get("password")
 
         if not username or not email or not password:
-            flash("Please fill out all fields.", "danger")
+            flash("Please fill out all fields.")
             return redirect(url_for("auth.register"))
 
         if User.query.filter_by(email=email).first():
-            flash("Email already registered.", "danger")
+            flash("Email already registered.")
             return redirect(url_for("auth.register"))
 
         user = User(username=username, email=email)
@@ -40,14 +40,15 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=request.form.get("email")).first()
 
         if not user or not user.check_password(password):
-            flash("Invalid email or password.", "danger")
+            flash("Invalid email or password.")
             return redirect(url_for("auth.login"))
 
         login_user(user)
         flash("Logged in successfully.", "success")
+        return redirect(url_for("main.dashboard"))
 
     return render_template("login.html")
 

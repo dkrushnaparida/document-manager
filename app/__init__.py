@@ -1,6 +1,6 @@
 from flask import Flask
 from config import Config
-
+from app.main.routes import main_bp
 from app.extensions import db, migrate, login_manager
 
 
@@ -27,6 +27,7 @@ def create_app():
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(file_bp)
+    app.register_blueprint(main_bp)
 
     from app.middleware import register_middleware
 
